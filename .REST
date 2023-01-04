@@ -1,0 +1,5 @@
+POST https://phdevbr-zany-journey-x4x4r97wgr42g49-3000.preview.app.github.dev/api/v1/posts HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+
+sender_id=1&content=test
