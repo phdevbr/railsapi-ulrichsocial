@@ -1,29 +1,41 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      post: {},
+    };
+  },
+  created() {
+    this.getPost();
+  },
+  methods: {
+    getPost() {
+      axios
+        .get(
+          "https://phdevbr-zany-journey-x4x4r97wgr42g49-3000.preview.app.github.dev/api/v1/users/1"
+        )
+        .then((res) => {
+          this.post = res.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  mounted() {
+    this.getPost();
+  },
+};
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    Hello World
+    <button @click="getPosts">Button</button>
+    {{ post }}
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>
